@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK44WIN Demo</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#101522;
+ color:white;
+ font-family:Arial,sans-serif;
+ text-align:center;
+}
+header{
+ background:#192943;
+ color:#ffcc33;
+ padding:25px;
+ font-size:30px;
+ font-weight:bold;
+}
+.card{
+ background:#202e47;
+ margin:20px 14px;
+ padding:22px;
+ border-radius:15px;
+}
+.balance{
+ color:#37e69b;
+ font-size:28px;
+ font-weight:bold;
+}
+.slot{
+ font-size:48px;
+ margin:25px 0;
+}
+button{
+ background:#ffca35;
+ color:#111;
+ border:0;
+ border-radius:9px;
+ padding:15px 28px;
+ font-size:18px;
+ font-weight:bold;
+}
+.note{
+ color:#aab6ca;
+ font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<header>🎰 AK44WIN</header>
+
+<div class="card">
+<h2>Welcome to AK44WIN</h2>
+<p>Virtual Casino Demo</p>
+<p>Your Virtual Balance</p>
+<div class="balance" id="balance">1000 Credits</div>
+</div>
+
+<div class="card">
+<h2>🎰 Lucky Slots</h2>
+<div class="slot" id="slot">🍒 🍋 🍇</div>
+<button onclick="spin()">SPIN NOW</button>
+<p id="message">Good Luck!</p>
+</div>
+
+<div class="card">
+<h3>Game Rules</h3>
+<p>3 Same Symbols = +500 Credits</p>
+<p>2 Same Symbols = +100 Credits</p>
+<p>No Match = -20 Credits</p>
+</div>
+
+<p class="note">
+Free Demo Only | No Real Money
+</p>
+
+<script>
+let balance=1000;
+
+function spin(){
+ if(balance<20){
+  document.getElementById("message").innerText="Not enough credits!";
+  return;
+ }
+
+ balance-=20;
+
+ let symbols=["🍒","🍋","🍇","🔔","💎"];
+
+ let a=symbols[Math.floor(Math.random()*5)];
+ let b=symbols[Math.floor(Math.random()*5)];
+ let c=symbols[Math.floor(Math.random()*5)];
+
+ document.getElementById("slot").innerText=a+" "+b+" "+c;
+
+ if(a===b && b===c){
+  balance+=500;
+  document.getElementById("message").innerText="JACKPOT! +500 Credits!";
+ }
+ else if(a===b || b===c || a===c){
+  balance+=100;
+  document.getElementById("message").innerText="You won 100 Credits!";
+ }
+ else{
+  document.getElementById("message").innerText="Try Again!";
+ }
+
+ document.getElementById("balance").innerText=balance+" Credits";
+}
+</script>
+
+</body>
+</html>
